@@ -1,0 +1,104 @@
+<div class="container">
+<app-base></app-base>
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Sign up</h3>
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm"  >
+            <div *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched)" class="invalid-feedback">
+            {{errors}}
+             </div>
+            <div class="form-group">
+            <label for="username">Username: </label>
+            <input class="form-control"       [(ngModel)]="user.username"
+                   [ngClass]="{'is-invalid': name.errors && (name.touched || name.dirty), 'is-valid':name.valid}"
+                   name="name"
+                   #name="ngModel" required>
+
+               <div class="invalid-feedback">
+                 Username is required
+               </div>
+          </div>
+            <div class="form-group">
+            <label for="password"> Password: </label>
+            <input class="form-control"
+                   type='password'
+                   [(ngModel)]="password_1"
+                   [ngClass]="{'is-invalid': passw.errors && (passw.touched || passw.dirty), 'is-valid':passw.valid}"
+                   name="password_1"
+                   #passw="ngModel" required>
+
+               <div class="invalid-feedback">
+                 Password is required
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="password_2"> Repeat password: </label>
+            <input class="form-control"
+                   type='password'
+                   [(ngModel)]="password_2"
+                   [ngClass]="{'is-invalid': password_conf.errors && (password_conf.touched || password_conf.dirty), 'is-valid':password_conf.valid}"
+                   name="password_2"
+                   #password_conf = 'ngModel'
+                   required>
+               <div                class="invalid-feedback">
+                 Password confirm is required
+              </div>
+
+            </div>
+            <div class="form-group">
+            <label for="email"> Email: </label>
+            <input class="form-control"
+                   type='email'
+                   [(ngModel)]="user.email"
+                   [ngClass]="{'is-invalid': email.errors && (email.touched || email.dirty), 'is-valid':email.valid}"
+                   name="email"
+                   #email="ngModel" required>
+
+               <div class="invalid-feedback">
+                 Email is required
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="country"> Country: </label>
+            <select class="form-control"
+                   (change)="loadCities()"
+                   type='text'
+                   [(ngModel)]="country"
+                   [ngClass]="{'is-invalid': country_var.errors && (country_var.touched || country_var.dirty), 'is-valid':country_var.valid}"
+                   name="country"
+                   #country_var="ngModel" required>
+                  <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+              </select>
+               <div class="invalid-feedback">
+                 Country is required
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="city"> City: </label>
+            <select class="form-control"
+                   type='text'
+                   [(ngModel)]="city"
+                   [ngClass]="{'is-invalid': city_var.errors && (city_var.touched || city_var.dirty), 'is-valid':city_var.valid}"
+                   name="city"
+                   #city_var="ngModel" required>
+                  <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                </select>
+                <div class="invalid-feedback">
+                  City is required
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" >
+            Sign up
+            </button>
+           </form>
+
+        <div class="card-footer text-muted text-center">
+          Already have an account? <a routerLink='../../login'>Log in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,41 @@
+<app-home></app-home>
+
+<div class="container">
+<ol class="breadcrumb my-4">
+  <li class=" breadcrumb-item "><a routerLink = '' >Boards</a></li>
+  <li class=" breadcrumb-item " ><a routerLink = '../' >Topics</a></li>
+  <li class=" breadcrumb-item active" >New topic</li>
+</ol>
+
+
+<div class="container col-6 mt-4">
+  <h1>New topic</h1>
+  <form (ngSubmit)="onSubmit()" #topicForm="ngForm"  >
+    <div class="form-group">
+    <label for="name">Subject: </label>
+    <input class="form-control" [(ngModel)]="subject"
+           [ngClass]="{'is-invalid': topic.errors && (topic.touched || topic.dirty), 'is-valid':topic.valid}"
+           name="subject"
+           #topic="ngModel" required>
+
+       <div class="invalid-feedback">
+         Subject is required
+       </div>
+  </div>
+    <div class="form-group">
+    <label for="post">Message: </label>
+    <textarea class="form-control" [(ngModel)]="message"
+              [ngClass]="{'is-invalid': post.errors && (post.touched || post.dirty), 'is-valid':post.valid}"
+              name="message"
+              #post="ngModel" required></textarea>
+
+       <div class="invalid-feedback">
+         Message is required
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()" >
+      Post
+    </button>
+   </form>
+</div>
+</div>

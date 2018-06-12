@@ -1,0 +1,6 @@
+export * from "./boards/boards.component"
+export * from "./new-topic/new-topic.component"
+export * from "./topics/topics.component"
+export * from "./posts/posts.component"
+export * from "./edit-post/edit-post.component"
+export * from "./home/home.component"

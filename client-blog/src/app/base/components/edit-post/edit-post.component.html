@@ -1,0 +1,35 @@
+<app-home></app-home>
+
+<div class="container">
+  <ol class="breadcrumb my-4">
+    <li class=" breadcrumb-item "><a routerLink = '' >Boards</a></li>
+    <li class=" breadcrumb-item " ><a routerLink = '../../' >Topics</a></li>
+    <li class=" breadcrumb-item " ><a routerLink = '../' >Posts</a></li>
+    <li class=" breadcrumb-item active" >Post_ID:{{post.id}}</li>
+
+  </ol>
+
+
+<div class="container col-6 mt-4">
+  <h1>Edit post</h1>
+  <form (ngSubmit)="onSubmit()" #editPostForm="ngForm">
+    <div class="form-group">
+    <label for="post">Message: </label>
+    <textarea class="form-control" [(ngModel)]="post.message"
+              [ngClass]="{'is-invalid': message.errors && (message.touched || message.dirty), 'is-valid':message.valid}"
+              name="message"
+              #message="ngModel" required></textarea>
+
+       <div class="invalid-feedback">
+         Message is required
+       </div>
+    </div>
+    <button [disabled]="!editPostForm.valid" type="submit" class="btn btn-success"  (click)="onSubmit()" >
+      Edit
+    </button>
+    <button type="submit" class="btn" (click)="onCancel()" >
+      Cancel
+    </button>
+   </form>
+</div>
+</div>

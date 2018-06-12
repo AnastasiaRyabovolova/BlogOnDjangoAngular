@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:latest
+  django:
+    build: ./server-blog/
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/tmp
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    working_dir: /tmp/server-blog
+  node:
+    build: ./client-blog/
+    container_name: angular
+    command: yarn start --host 0.0.0.0 --port 4200
+    volumes: 
+      - ./client-blog/:/tmp
+    ports:
+      - 4200:4200
+ 
+

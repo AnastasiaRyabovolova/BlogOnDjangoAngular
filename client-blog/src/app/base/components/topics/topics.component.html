@@ -1,0 +1,67 @@
+<app-home></app-home>
+
+<div class="container">
+  <ol class="breadcrumb my-4">
+    <li class=" breadcrumb-item "><a routerLink = '' >Boards</a></li>
+    <li class=" breadcrumb-item active" >Topics</li>
+  </ol>
+
+<div *ngIf='user' class=" row mb-4">
+  <a  href ='#' routerLink="./new" class="btn btn-primary ">Create new</a>
+</div>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+
+      <table class="table table-striped mb-4">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Topic</th>
+            <th>Starter</th>
+            <th>Replies</th>
+            <th>Views</th>
+            <th>Last Update</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let topic of topics">
+              <td>
+                <p class="mb-0">
+                  <a [routerLink]="['./', topic.id, page, 'posts']" href="#">{{ topic.subject }}</a>
+                </p>
+              </td>
+              <td class="align-middle">{{ topic.starter }}</td>
+              <td class="align-middle">{{ topic.replies }}</td>
+              <td class="align-middle">{{ topic.views }}</td>
+              <td class="align-middle">{{ topic.last_updated | date:'short' }}</td>
+            </tr>
+        </tbody>
+      </table>
+      <nav>
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="btn page-link" aria-label="Previous" (click)="previous(page)">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li *ngFor='let pg of pages'
+          class="page-item" [ngClass]="{'active': page==pg}">
+            <a class="page-link"
+            (click)="setPage(pg)">
+            {{pg}}
+          </a>
+        </li>
+          <li class="page-item">
+            <a class="page-link"
+            aria-label="Next" (click)="next(page)"
+            >
+              <span aria-hidden="true">&raquo;</span>
+              <span class="btn sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+</div>
